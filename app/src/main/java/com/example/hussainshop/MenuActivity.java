@@ -7,18 +7,21 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity  {
  RecyclerView recyclerView;
     List<Product> products = new ArrayList<>();
-
+    int quantity;
+    TextView quantityItems;
+    Button mButtonAdd;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
 
 
 
@@ -30,18 +33,24 @@ public class MenuActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         initializeData();
         initializeAdapter();
+        quantityItems = findViewById(R.id.textViewQuantitys);
+
+
+
 
     }
     private void initializeData(){
         products = new ArrayList<>();
         products.add(new Product("12.99","0","0.00",R.drawable.ic_friedchicken));
-        products.add(new Product("12.99","0","0.00",R.drawable.ic_generaltao));
-        products.add(new Product("12.99","0","0.00",R.drawable.ic_chickennugget));
+        products.add(new Product("19.99","0","0.00",R.drawable.ic_generaltao));
+        products.add(new Product("13.95","0","0.00",R.drawable.ic_chickennugget));
     }
     private void initializeAdapter(){
         ProductAdapter adapter = new ProductAdapter(products);
         recyclerView.setAdapter(adapter);
     }
+
+
 
 }
 

@@ -103,7 +103,8 @@
                 android:text="+"
                 app:layout_constraintStart_toEndOf="@+id/buttonSubtract"
                 app:layout_constraintTop_toBottomOf="@+id/textViewSubTotalAmount"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:onClick="addItems"/>
 
             <Button
                 android:id="@+id/buttonSubtract"
