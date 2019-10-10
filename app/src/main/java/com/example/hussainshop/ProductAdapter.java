@@ -37,33 +37,32 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             quantity = itemView.findViewById(R.id.textViewQuantitys);
             mButtonAdd = itemView.findViewById(R.id.buttonAdd);
             mButtonAdd.setOnClickListener(this);
-            mButtonSubtract =itemView.findViewById(R.id.buttonSubtract);
+            mButtonSubtract = itemView.findViewById(R.id.buttonSubtract);
             mButtonSubtract.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-           switch (v.getId()){
-               case R.id.buttonAdd:
-                   ++qty;
-                   quantity.setText(Integer.toString(qty));
-               total = Integer.parseInt(quantity.getText().toString()) * Double.parseDouble(price.getText().toString());
-               subTotal.setText(Double.toString(total));
-               break;
-               case R.id.buttonSubtract:
-                   if(Integer.parseInt(quantity.getText().toString())==0){
-                       quantity.setText("0");
-                       Toast.makeText(v.getContext(), "Cannot Remove items.", Toast.LENGTH_SHORT).show();
-                   } else
-                   --qty;
-                   quantity.setText(Integer.toString(qty));
-                   total = Integer.parseInt(quantity.getText().toString()) * Double.parseDouble(price.getText().toString());
-                   subTotal.setText(Double.toString(total));
-                   break;
+            switch (v.getId()) {
+                case R.id.buttonAdd:
+                    ++qty;
+                    quantity.setText(Integer.toString(qty));
+                    total = Integer.parseInt(quantity.getText().toString()) * Double.parseDouble(price.getText().toString());
+                    subTotal.setText(Double.toString(total));
+                    break;
+                case R.id.buttonSubtract:
+                    if (Integer.parseInt(quantity.getText().toString()) == 0) {
+                        quantity.setText("0");
+                        Toast.makeText(v.getContext(), "Cannot Remove items.", Toast.LENGTH_SHORT).show();
+                    } else
+                        --qty;
+                    quantity.setText(Integer.toString(qty));
+                    total = Integer.parseInt(quantity.getText().toString()) * Double.parseDouble(price.getText().toString());
+                    subTotal.setText(Double.toString(total));
+                    break;
 
 
-           }
-
+            }
 
 
         }

@@ -16,4 +16,9 @@
     <string name="pricec2">13.99</string>
     <string name="pricec3">14.99</string>
     <string name="welcome_to_hussainshop">Welcome to HussainShop!</string>
+    <string-array name="methods">
+        <item name="express">Express:50$</item>
+        <item>Regular:10$</item>
+        <item>No hurry:0$</item>
+    </string-array>
 </resources>
