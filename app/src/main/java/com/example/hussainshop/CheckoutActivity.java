@@ -11,10 +11,10 @@ public class CheckoutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        DecimalFormat currency = new DecimalFormat("###,###.##");
+       DecimalFormat currency = new DecimalFormat("###,###.##");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-        Bundle b = getIntent().getExtras();
+        /* Bundle b = getIntent().getExtras();
         String data = b.getString("Quantity");
         TextView totalQty = findViewById(R.id.totalQuantity);
         totalQty.setText(data);
@@ -35,6 +35,10 @@ public class CheckoutActivity extends AppCompatActivity {
 
         String finalTotal = String.valueOf(currency.format(totalAmounts));
 
-        totalAmount.setText(finalTotal);
+        totalAmount.setText(finalTotal);*/
+       Intent i = getIntent();
+       String quantity= i.getExtras().getString("Quantity");
+       TextView quantities= findViewById(R.id.totalQuantity);
+       quantities.setText(quantity);
     }
 }

@@ -20,7 +20,7 @@ import java.util.List;
 public class MenuActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<Product> products = new ArrayList<>();
-    int quantity;
+
     TextView quantityItems;
     Button mButtonAdd;
     FloatingActionButton fab;
@@ -71,6 +71,7 @@ public class MenuActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(MenuActivity.this, CheckoutActivity.class);
+                        intent.putExtra("Quantity",quantityItems.getText().toString());
                         startActivity(intent);
 
                     }
@@ -88,7 +89,7 @@ public class MenuActivity extends AppCompatActivity {
     private void initializeData() {
         products = new ArrayList<>();
 
-        products.add(new Product("12.99", "0", "0.00", R.drawable.ic_friedchicken));
+        products.add(new Product(getResources().getString(R.string.priceFriedChicken), "0", "0.00", R.drawable.ic_friedchicken));
         products.add(new Product("19.99", "0", "0.00", R.drawable.ic_generaltao));
         products.add(new Product("13.95", "0", "0.00", R.drawable.ic_chickennugget));
     }

@@ -1,5 +1,7 @@
 package com.example.hussainshop;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,6 +28,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         double priceQty;
         double total;
         Button mButtonSubtract;
+        FloatingActionButton floatingActionButton;
+
+
 
 
         ProductViewHolder(View itemView) {
@@ -63,6 +68,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
 
             }
+
 
 
         }
