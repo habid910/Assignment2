@@ -1,5 +1,8 @@
+
+
 package com.example.hussainshop;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
@@ -9,33 +12,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
+    private ArrayList<Product> products;
+    LayoutInflater mInflater;
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        CardView cv;
+        ProductAdapter adapter;
         TextView price;
         TextView subTotal;
         ImageView foodPhoto;
         TextView quantity;
         Button mButtonAdd;
         int qty;
-        double priceQty;
         double total;
         Button mButtonSubtract;
-        FloatingActionButton floatingActionButton;
 
 
-
-
-        ProductViewHolder(View itemView) {
+        ProductViewHolder(View itemView, ProductAdapter adapter) {
             super(itemView);
-            cv = itemView.findViewById(R.id.cardview);
             price = (TextView) itemView.findViewById(R.id.textViewPrice);
             subTotal = (TextView) itemView.findViewById(R.id.textViewSubTotalAmount);
             foodPhoto = (ImageView) itemView.findViewById(R.id.foodImage);
@@ -44,6 +46,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             mButtonAdd.setOnClickListener(this);
             mButtonSubtract = itemView.findViewById(R.id.buttonSubtract);
             mButtonSubtract.setOnClickListener(this);
+            this.adapter = adapter;
         }
 
         @Override
@@ -54,6 +57,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     quantity.setText(Integer.toString(qty));
                     total = Integer.parseInt(quantity.getText().toString()) * Double.parseDouble(price.getText().toString());
                     subTotal.setText(Double.toString(total));
+                    getLayoutPosition();
                     break;
                 case R.id.buttonSubtract:
                     if (Integer.parseInt(quantity.getText().toString()) == 0) {
@@ -70,15 +74,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             }
 
 
-
         }
     }
 
-    List<Product> products;
 
-    ProductAdapter(List<Product> products) {
+    ProductAdapter(Context context, ArrayList<Product> products) {
+        mInflater = LayoutInflater.from(context);
         this.products = products;
     }
+
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
@@ -87,9 +91,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cardlist_item, viewGroup, false);
-        ProductViewHolder pvh = new ProductViewHolder(v);
-        return pvh;
+        View mItemView = mInflater.inflate(R.layout.cardlist_item, viewGroup, false);
+        return new ProductViewHolder(mItemView, this);
     }
 
     @Override
@@ -97,7 +100,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         productViewHolder.price.setText(products.get(i).price);
         productViewHolder.subTotal.setText(products.get(i).subtotal);
         productViewHolder.foodPhoto.setImageResource(products.get(i).photoId);
-        productViewHolder.quantity.setText(products.get(i).quantity);
+        productViewHolder.quantity.setText(products.get(i).getQuantity());
 
     }
 

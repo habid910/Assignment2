@@ -17,6 +17,7 @@
     <string name="pricec3">14.99</string>
     <string name="welcome_to_hussainshop">Welcome to HussainShop!</string>
     <string name="priceFriedChicken">12.99</string>
+    <string name="price1999">19.99</string>
     <string-array name="methods">
         <item name="express">Express:50$</item>
         <item>Regular:10$</item>

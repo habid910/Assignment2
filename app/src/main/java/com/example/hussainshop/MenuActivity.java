@@ -19,14 +19,12 @@ import java.util.List;
 
 public class MenuActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    List<Product> products = new ArrayList<>();
-
-    TextView quantityItems;
-    Button mButtonAdd;
+    ArrayList<Product> products;
     FloatingActionButton fab;
     double cost;
+    String shipping;
     final ArrayList<String> selectedItems = new ArrayList();
-    int checkedItem = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +38,6 @@ public class MenuActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         initializeData();
         initializeAdapter();
-        quantityItems = findViewById(R.id.textViewQuantitys);
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,16 +50,20 @@ public class MenuActivity extends AppCompatActivity {
                 builder.setTitle("Please Select one of the following methods:")
                         // Specify the list array, the items to be selected by default (null for none),
                         // and the listener through which to receive callbacks when items are selected
-                        .setSingleChoiceItems(R.array.methods, checkedItem, new DialogInterface.OnClickListener() {
+                        .setSingleChoiceItems(R.array.methods, -1, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                if (selectedItems.contains("Express")) {
-                                    cost = 50;
-                                } else if (selectedItems.contains("Regular")) {
-                                    cost = 10;
-                                } else if (selectedItems.contains("No hurry")) {
-                                    cost = 0;
+                                switch (which) {
+                                    case 0:
+                                        cost = 50;
+                                        break;
+                                    case 1:
+                                        cost = 10;
+                                        break;
+                                    case 2:
+                                        cost = 0;
+                                        break;
                                 }
 
 
@@ -71,14 +72,16 @@ public class MenuActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(MenuActivity.this, CheckoutActivity.class);
-                        intent.putExtra("Quantity",quantityItems.getText().toString());
+                        intent.putExtra("Quantity", String.valueOf(cost));
                         startActivity(intent);
+                        //Log for quantities added
+                        Log.i("Quantity added ", products.get(0).getQuantity());
 
                     }
                 }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                     dialog.cancel();
+                        dialog.cancel();
                     }
                 });
                 builder.create().show();
@@ -89,13 +92,20 @@ public class MenuActivity extends AppCompatActivity {
     private void initializeData() {
         products = new ArrayList<>();
 
-        products.add(new Product(getResources().getString(R.string.priceFriedChicken), "0", "0.00", R.drawable.ic_friedchicken));
-        products.add(new Product("19.99", "0", "0.00", R.drawable.ic_generaltao));
-        products.add(new Product("13.95", "0", "0.00", R.drawable.ic_chickennugget));
+        products.add(new Product(getResources().getString(R.string.priceFriedChicken), getResources().getString(R.string.amountofItems), getResources().getString(R.string._0_00), R.drawable.ic_friedchicken));
+        products.add(new Product(getResources().getString(R.string.price1999), "0", getResources().getString(R.string._0_00), R.drawable.ic_generaltao));
+        products.add(new Product("13.95", getResources().getString(R.string.amountofItems), getResources().getString(R.string._0_00), R.drawable.ic_chickennugget));
+        products.add(new Product(getResources().getString(R.string.priceFriedChicken), "0", getResources().getString(R.string._0_00), R.drawable.ic_friedchicken));
+        products.add(new Product("19.99", getResources().getString(R.string.amountofItems), getResources().getString(R.string._0_00), R.drawable.ic_generaltao));
+        products.add(new Product("13.95", getResources().getString(R.string.amountofItems), getResources().getString(R.string._0_00), R.drawable.ic_chickennugget));
+        products.add(new Product(getResources().getString(R.string.priceFriedChicken), "0", getResources().getString(R.string._0_00), R.drawable.ic_friedchicken));
+        products.add(new Product("19.99", getResources().getString(R.string.amountofItems), getResources().getString(R.string._0_00), R.drawable.ic_generaltao));
+        products.add(new Product("13.95", getResources().getString(R.string.amountofItems), getResources().getString(R.string._0_00), R.drawable.ic_chickennugget));
+        products.add(new Product("13.95", getResources().getString(R.string.amountofItems), getResources().getString(R.string._0_00), R.drawable.ic_chickennugget));
     }
 
     private void initializeAdapter() {
-        ProductAdapter adapter = new ProductAdapter(products);
+        ProductAdapter adapter = new ProductAdapter(this, products);
         recyclerView.setAdapter(adapter);
     }
 
