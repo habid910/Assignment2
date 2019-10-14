@@ -7,10 +7,10 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="400dp"
+        android:layout_height="214dp"
         android:text="@string/welcome_to_hussainshop"
-        android:textSize="55sp"
+        android:textSize="44sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.112"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -46,9 +46,8 @@
         android:background="@drawable/ic_shoppingcart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.423" />
+        app:layout_constraintVertical_bias="0.553" />
 
 </android.support.constraint.ConstraintLayout>

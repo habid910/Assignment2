@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HussainShop</string>
+    <string name="app_name">HussainNicerShop</string>
     <string name="lblPrice">Price</string>
     <string name="price">12.99</string>
     <string name="lblQuantity">Quantity</string>
@@ -15,7 +15,7 @@
     <string name="total">Total</string>
     <string name="pricec2">13.99</string>
     <string name="pricec3">14.99</string>
-    <string name="welcome_to_hussainshop">Welcome to HussainShop!</string>
+    <string name="welcome_to_hussainshop">Welcome to HussainNicerShop!</string>
     <string name="priceFriedChicken">12.99</string>
     <string name="price1999">19.99</string>
     <string-array name="methods">
